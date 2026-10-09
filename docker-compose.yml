@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  executor:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - EXECUTOR_API_KEY=your_secret_api_key_here
+      - GLOBAL_TIMEOUT_MS=30000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      # Mount tmp so workspace creates files on the host or inside a shared volume if using docker-in-docker
+      - ./tmp:/app/tmp
